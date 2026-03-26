@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:w9firebase/model/artists/artist.dart';
 import '../../../../model/songs/song.dart';
 import '../../../theme/theme.dart';
 import '../../../utils/async_value.dart';
@@ -35,6 +36,7 @@ class LibraryContent extends StatelessWidget {
             onTap: () {
               mv.start(songs[index]);
             },
+            artist: mv.artistFromSongId(songs[index]) ?? Artist(id: "", name: "unknown", genre: "unknown", imageUrl: Uri.parse('')),
           ),
         );
     }

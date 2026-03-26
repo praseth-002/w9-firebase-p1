@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:w9firebase/model/artists/artist.dart';
 
 import '../../../model/songs/song.dart';
 
@@ -8,11 +9,13 @@ class SongTile extends StatelessWidget {
     required this.song,
     required this.isPlaying,
     required this.onTap,
+    required this.artist
   });
 
   final Song song;
   final bool isPlaying;
   final VoidCallback onTap;
+  final Artist artist;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +30,15 @@ class SongTile extends StatelessWidget {
           onTap: onTap,
           leading: CircleAvatar(backgroundImage: NetworkImage(song.imageUrl.toString())),
           title: Text(song.title),
-          trailing: Text(
-            isPlaying ? "Playing" : "",
-            style: TextStyle(color: Colors.amber),
+          subtitle: Text("${song.duration.inMinutes}mins    67Likes   ${artist.name} - ${artist.genre}"),
+          trailing: Column(
+            children: [
+              Text(
+                isPlaying ? "Playing" : "",
+                style: TextStyle(color: Colors.amber),
+              ),
+              Icon(Icons.favorite),
+            ],
           ),
         ),
       ),
